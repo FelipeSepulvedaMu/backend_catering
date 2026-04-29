@@ -1,0 +1,26 @@
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({ path: path.join(process.cwd(), '.env') });
+
+const pool = new Pool({
+  host: 'aws-1-us-east-2.pooler.supabase.com',
+  port: 6543,
+  database: 'postgres',
+  user: 'postgres.pezxcpupoqvktfarsaqg',
+  password: 'Felipe359722$', // ¡No olvides poner tu clave!
+  ssl: { 
+    rejectUnauthorized: false 
+  }
+});
+
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.error('❌ Error de conexión:', err.message);
+  } else {
+    console.log('✅ ¡Conexión exitosa al Pooler de Supabase!');
+  }
+});
+
+export default pool;
