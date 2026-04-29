@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import router from './routes'; // 👈 IMPORTANTE
 
 const app = express();
 
@@ -9,6 +10,9 @@ app.use(cors({
   origin: process.env.FRONTEND_URL,
   credentials: true
 }));
+
+// 👇 AQUÍ ESTÁ LA CLAVE
+app.use('/api', router);
 
 app.get('/', (req, res) => {
   res.send('OK ROOT');
