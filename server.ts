@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import router from './routes'; // 👈 IMPORTANTE
+import router from './routes'; // 👈 ahora sí funciona porque existe index.ts
 
 const app = express();
 
@@ -11,14 +11,14 @@ app.use(cors({
   credentials: true
 }));
 
-// 👇 AQUÍ ESTÁ LA CLAVE
+// 👇 CLAVE
 app.use('/api', router);
 
 app.get('/', (req, res) => {
   res.send('OK ROOT');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`SERVER OK on port ${PORT}`);
